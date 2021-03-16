@@ -1,0 +1,28 @@
+nasm boot sect.asm -f bin -o boot sect.bin
+qemu-system-x86_64 -drive format=raw,file=x86-64.img 
+
+Returns:       CH         Maximum value for cylinder (10-bit value;
+                          upper 2 bits in CL)
+               CL         Maximum value for sector
+               DH         Maximum value for heads
+ 
+For Fixed Disks:
+               AH         Status of operation (See Service 01h)
+               DL         Number of fixed disks
+               CF         Set if error; otherwise cleared
+ 
+target remote localhost:1234
+set architecture i8086
+(gdb) info registers cl
+cl             0x3f     63
+(gdb) info register ch
+ch             0x0      0
+(gdb) info register dh
+dh             0xf      15
+(gdb) info register dl
+dl             0x1      1
+(gdb) info register cf
+Invalid register `cf'
+(gdb) info register eflags
+eflags         0x246    [ PF ZF IF ]
+
