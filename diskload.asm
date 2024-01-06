@@ -3,8 +3,10 @@ disk_load :
     push dx ; Store DX on stack so later we can recall
             ; how many sectors were request to be read ,
             ; even if it is altered in the meantime
+    push bx
     mov bx,DISK_LOAD_MSG
     call print_string
+    pop bx
     mov ah,0x02 ; BIOS read sector function
     mov al,dh ; Read DH sectors
     mov ch,0x00 ; Select cylinder 0

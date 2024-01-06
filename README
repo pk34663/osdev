@@ -26,3 +26,15 @@ Invalid register `cf'
 (gdb) info register eflags
 eflags         0x246    [ PF ZF IF ]
 
+x86 memory segmentation
+
+16-bit register can address up to 0xffff - 64k
+
+cs ds es ss - segment registers
+
+absolute address - segment register * 16 + offset
+multiply is just a shift left 0x42 -> 0x420
+
+using segmentation gets us to 1Mb 16 * 0xffff + 0xffff
+
+
